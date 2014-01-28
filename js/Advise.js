@@ -1,4 +1,6 @@
-$("#Advise").click(function () {
+$("#Advise").click(advisePage);
+
+function advisePage() {
     if (localStorage.getItem("tbRecords") === null) {
         alert("No records exist.");
         var url = "#pagMenu";
@@ -95,10 +97,10 @@ $("#Advise").click(function () {
                 }
          }
          // Meter properties
-	 function DrawMeter(g)
-	 {
+     function DrawMeter(g)
+     {
 
-	    g.Set('chart.value.text.units.post', ' mlU/L')
+        g.Set('chart.value.text.units.post', ' mlU/L')
             .Set('chart.value.text.boxed', false)
             .Set('chart.value.text.size', 14)
             .Set('chart.value.text.font', 'Verdana')
@@ -112,46 +114,46 @@ $("#Advise").click(function () {
             .Set('chart.centerx', 50)
             .Set('chart.centery', 250)
             .Draw();
-	 }
+     }
          function StageAMeter()
          {
          var cg = new RGraph.CornerGauge('myCanvas2', 0,3,TSH)
             .Set('chart.colors.ranges', [[.5,3, 'red'], [.1,.5,'yellow'], [.01,.1, '#0f0']]);
-	    DrawMeter(cg);
+        DrawMeter(cg);
             //If TSH value is huge
             if (TSH > 3)
             {
             var cg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[.5,3, 'red'], [.1,.5,'yellow'], [.01,.1, '#0f0'], [3.01, TSH, 'red']]);
-	       DrawMeter(cg);
+           DrawMeter(cg);
             }
          }
          
          function StageBMeter() {
          var bcg = new RGraph.CornerGauge('myCanvas2', 0,3,TSH)
             .Set('chart.colors.ranges', [[2.01,3, 'red'], [.51,2,'yellow'], [.1,.5, '#0f0'], [.01,.1,'yellow']]);
-	    DrawMeter(bcg);
+        DrawMeter(bcg);
 
             if (TSH > 3)
             {
             var bcg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[2.01,3, 'red'], [.51,2,'yellow'], [.1,.5, '#0f0'], [.01,.1, 'yellow'],[3,TSH,'red']]);
-	       DrawMeter(bcg);
+           DrawMeter(bcg);
             }
          }
          
          function StageCMeter() {
          var ccg = new RGraph.CornerGauge('myCanvas2', 0,15,TSH)
             .Set('chart.colors.ranges', [[10.01,15, 'red'], [2.01,10,'yellow'], [.35,2, '#0f0'], [.1,.34,'yellow']]);
-	    DrawMeter(ccg);
+        DrawMeter(ccg);
 
             if (TSH > 15)
             {
             var ccg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[10.01,15, 'red'], [2.01,10,'yellow'], [.35,2, '#0f0'], [.1,.34, 'yellow'],[15.01,TSH,'red']]);
-	       DrawMeter(ccg);
+           DrawMeter(ccg);
             }
-	 }
+     }
      
     // main 
     if (TSHLevel == "StageA")
@@ -179,4 +181,4 @@ $("#Advise").click(function () {
     alert("No records exist.");
     }
 
-}});
+}}

@@ -13,13 +13,21 @@ $( "#frmUserForm" ).submit(function() { //Event : submiting the form
 });
 
 function checkUserForm() { //Check for empty fields in the form
+	//for finding current date 
+	var d = new Date();
+	var month = d.getMonth()+1;
+    var day = d.getDate();
+    var currentDate = d.getFullYear() + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    ((''+day).length<2 ? '0' : '') + day;
+
 	if( ($("#txtFirstName").val() != "") &&
 		($("#txtLastName").val() != "") &&
 		($("#txtHealthCardNumber").val() != "") &&
-		($("#datBirthdate").val() != "") &&
+		($("#datBirthdate").val() != "") && ($("#datBirthdate").val() <= currentDate)&&
 		($("#slcCancerType option:selected").val()  != "Select Cancer Type") &&
 		($("#slcCancerStage option:selected").val() != "Select Cancer Stage") &&
-		($("#slcTSHRange option:selected").val() != "Select TSH Range")){
+		($("#slcTSHRange option:selected").val() != "Select TSH Range") ) {
 		return true;
 	}
 	else{

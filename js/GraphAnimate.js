@@ -1,5 +1,8 @@
 
-$("#sidGraph").click(function () {
+$("#sidGraph").click(sidGraph);
+
+function sidGraph()
+{
 
     if (localStorage.getItem("tbRecords") === null) {
         alert("No records exist.");
@@ -57,6 +60,11 @@ $("#sidGraph").click(function () {
 
 
         function TSHplot() {
+            //next  three lines to declare TSH level 
+            /*var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
+        var user = JSON.parse(localStorage.getItem("user"));
+        var TSHLevel = user.TSHRange;
+        var tshLevelLine = [1,2,3];*/
             var TSHline = new RGraph.Line('sky1', TSHarr)
             .Set('labels', Datearr)
             .Set('colors', ['blue'])
@@ -74,6 +82,15 @@ $("#sidGraph").click(function () {
             .Set('chart.labels.ingraph', [, , ['TSH', 'blue', 'yellow', 1, 80], , ])
             .Set('chart.title', 'TSH')
             .Draw();
+            /*
+            if (TSHLevel == "StageB")
+            {
+            var tshLevelLine = [.5,.5];
+            var TSHGreenline = new RGraph.Line('sky1', tshLevelLine)
+            .Draw();
+
+        }*/
+
         }
 
         function TGplot() {
@@ -128,4 +145,4 @@ $("#sidGraph").click(function () {
         ctx.fillText("Date(MM/DD)", 420, 450);
     }
 
-});
+}

@@ -91,9 +91,9 @@ function listRecords() {
 			"<thead>"+
 			"   <tr>"+
 			"   	<th>Date</th>"+
-			"   	<th><abbr title='Thyroid Stimulating Hormone'>TSH</abbr></th>"+
-			"   	<th><abbr title='Thyroglobulin'>Tg</abbr></th>"+
-			"   	<th>Synthroid Dose</th>"+
+			"   	<th><abbr title='Thyroid Stimulating Hormone'>TSH(mlU/l)</abbr></th>"+
+			"   	<th><abbr title='Thyroglobulin'>Tg(ug/L)</abbr></th>"+
+			"   	<th>Synthroid Dose(ug)</th>"+
 			"   	<th>Edit / Delete</th>"+
 			"   </tr>"+
 			"</thead>"+
@@ -128,8 +128,15 @@ function showRecordForm(){
 	$('#txtSynthroidDose').val(rec.SynthroidDose);
 }
 function checkRecordForm() {
+	//for finding current date 
+	var d = new Date();
+	var month = d.getMonth()+1;
+    var day = d.getDate();
+    var currentDate = d.getFullYear() + '/' +
+    ((''+month).length<2 ? '0' : '') + month + '/' +
+    ((''+day).length<2 ? '0' : '') + day;
 	if( ($("#txtTSH").val() != "") &&
-		($("#datExamDate").val() != "") &&
+		($("#datExamDate").val() != "") && ($("#datExamDate").val() <= currentDate)&&
 		(parseFloat($("#txtSynthroidDose").val()) < 1000000) &&
 		($("#txtSynthroidDose").val() != "")){
 		return true;
