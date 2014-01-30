@@ -16,7 +16,7 @@ function sidGraph()
         var ctx = c.getContext("2d");
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, 500, 500);
-        var c = document.getElementById('sky2');
+        /*var c = document.getElementById('sky2');
         var ctx = c.getContext("2d");
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, 500, 500);
@@ -24,7 +24,7 @@ function sidGraph()
         var ctx = c.getContext("2d");
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, 500, 500);
-        ctx.fillStyle = "#000000";
+        ctx.fillStyle = "#000000";*/
         var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
         var TSHarr = new Array();
         var TGarr = new Array();
@@ -134,8 +134,8 @@ function sidGraph()
         }
 
         TSHplot();
-        TGplot();
-        Synthplot();
+        //TGplot();
+        //Synthplot();
 
         var c = document.getElementById("sky1");
         var ctx = c.getContext("2d");
