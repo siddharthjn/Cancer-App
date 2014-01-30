@@ -252,7 +252,6 @@
 		
 		<!--Custom Javascript/Jquery -->
 		<script src="js/RGraph.common.core.js"></script>
-		<script src="js/RGraph.common.dynamic.js"></script>
 		<script src="js/RGraph.common.effects.js"></script>
 		<script src="js/RGraph.line.js"></script>
 		<script src="js/UserForm.js"></script>
@@ -260,13 +259,19 @@
 		<script src="js/Navigation.js"></script>
 		<script src="js/Advise.js"></script>
 		<script src="js/GraphAnimate.js"></script>
-		<script src="js/GraphAnimate.js"></script>
         <script src="js/RGraph.cornergauge.js"></script>
         <script src="js/RGraph.hprogress.js"></script>
         <script src ="js/bootstrap.js"></script>
-    <script src="js/pageLoader.js">
-
-
-		</script>
+        <script src="js/pageLoader.js"></script>
+        <script> // for resizing graph page
+         var resizeGraph = function() {if($( window ).width() < 700){
+         $('#sky1').css({'width':$(window).width()- 50});
+         $('#myCanvas2').css({'width':$(window).width()- 50});
+         }};
+         $(window).resize(function(){
+         resizeGraph();
+         });
+          
+</script>
 	</body>
 </html>
