@@ -16,9 +16,9 @@ function sidGraph()
         var ctx = c.getContext("2d");
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, 500, 500);
-        /*var c = document.getElementById('sky2');
-        var ctx = c.getContext("2d");
-        ctx.fillStyle = "#FFFFFF";
+        //var c = document.getElementById('sky2');
+        var gtx = c.getContext("2d");
+        /*ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, 500, 500);
         var c = document.getElementById('sky3');
         var ctx = c.getContext("2d");
@@ -30,6 +30,8 @@ function sidGraph()
         var TGarr = new Array();
         var Syntharr = new Array();
         var Datearr = new Array();
+        var tshOk = new Array();
+        var tshOkLower = new Array();
         var m = 0;
         var d = 0;
         tbRecords.sort(compareDates);
@@ -55,19 +57,31 @@ function sidGraph()
             TSHarr[i] = parseFloat(tbRecords[i].TSH);
             TGarr[i] = parseFloat(tbRecords[i].Tg);
             Syntharr[i] = parseFloat(tbRecords[i].SynthroidDose);
+            tshOk[i] = 0.5;
+            tshOkLower[i] = 0.1;
         }
 
 
 
         function TSHplot() {
-            //next  three lines to declare TSH level 
-            /*var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
+            //next  three lines to declare TSH level
+        var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
         var user = JSON.parse(localStorage.getItem("user"));
         var TSHLevel = user.TSHRange;
-        var tshLevelLine = [1,2,3];*/
-            var TSHline = new RGraph.Line('sky1', TSHarr)
+        if (TSHLevel == "StageB")
+        {
+            console.log(TSHarr);
+            console.log(tshOk);
+            /*var tshOk = new Array();
+            tshOk.legnth = TSHarr.legnth;
+            for (var i = 0; i< tshOk.legnth; i++)
+            {
+                tshOk[i] = 0.5;
+            }*/
+
+            var TSHline = new RGraph.Line('sky1', TSHarr, tshOk, tshOkLower)
             .Set('labels', Datearr)
-            .Set('colors', ['blue'])
+            .Set('colors', ['blue', 'green', 'green'])
             .Set('shadow', true)
             .Set('shadow.offsetx', 1)
             .Set('shadow.offsety', 1)
@@ -82,18 +96,12 @@ function sidGraph()
             .Set('chart.labels.ingraph', [, , ['TSH', 'blue', 'yellow', 1, 80], , ])
             .Set('chart.title', 'TSH')
             .Draw();
-            /*
-            if (TSHLevel == "StageB")
-            {
-            var tshLevelLine = [.5,.5];
-            var TSHGreenline = new RGraph.Line('sky1', tshLevelLine)
-            .Draw();
-
-        }*/
-
+        }
         }
 
-        function TGplot() {
+
+
+       /* function TGplot() {
 
             var TGline = new RGraph.Line('sky2', TGarr)
             .Set('labels', Datearr)
@@ -131,7 +139,7 @@ function sidGraph()
             .Set('chart.labels.ingraph', [, , ['Synthroid', 'black', 'yellow', 1, 80], , ])
              .Set('chart.title', 'Synthroid Dose')
             .Draw();
-        }
+        }*/
 
         TSHplot();
         //TGplot();
