@@ -1,12 +1,42 @@
-$( "#btnEnter" ).click(function() {
+function legalCounter()
+		{
 	
-	if(JSON.parse(localStorage.getItem("user")) != null){
+		localStorage.setItem("counter", "0");
+        var counter = JSON.parse(localStorage.getItem("counter"));
+        console.log(counter);
+    }
+   
+
+
+$( "#btnEnter" ).click(function() {
+	if(document.getElementById("passcode").value == "2345")
+	{
+	/* if(JSON.parse(localStorage.getItem("user")) != null){
 		$("#btnEnter").attr('href',"#pagDialog").attr("data-rel","dialog").button();
-	}
-	else{
-		$("#btnEnter").attr("href","#pagUserInfo").button();	
-	}   
+	  }
+	else{ */
+		var count = 0;
+		if (localStorage.getItem("counter") == null)
+		{   
+			$.mobile.changePage("#legalNotice");
+			localStorage.setItem("counter", "1");
+			$("#btnEnter").attr("href","#legalNotice").button();
+			count = 1;
+			}
+		else if(localStorage.getItem("counter") == "1" && count ==0)	
+		 $("#btnEnter").attr("href","#pagMenu").button();	
+	//} 
+	 } 
+	else
+	{
+		alert("Please enter your password correctly.")
+	} 
 });
+
+$( "#legalNotice" ).click(function() {
+
+   $("#noticeYes").attr("href","#pagUserInfo").button();	
+	});
 
 $( "#btnUserBack" ).click(function() {
 	
@@ -14,10 +44,10 @@ $( "#btnUserBack" ).click(function() {
 		$("#btnUserBack").attr('href',"#pagMenu").button();
 	}
 	else{
-		$("#btnUserBack").attr("href","#pagHome").button();	
+		$("#btnUserBack").attr("href","#pagMenu").button();	
 	}   
 });
-
+/*
 $( "#btnDialogNo" ).click(function() {
 	//If the user click on the button 'NO', than the value of 'skip' is NO
 	if (typeof(Storage) == "undefined" ) {
@@ -61,8 +91,12 @@ $( "#btnDialogYes" ).click(function() {
 
 $( "#pagHome" ).on("pagebeforeshow",function() { 
 	//Checking whether the page should be skipped or not 
+	
 	if(localStorage.getItem("skip") == "YES")
 	{	
+                    
+            
 		$.mobile.changePage("#pagMenu");
+	
 	}
-});
+});*/

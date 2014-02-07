@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang=en>
 	<head>
-		<title>Thyroid Cancer Aid</title>
+		<title>Thyroid Cancer Aide</title>
 		
 		<!--Adjusting the page on mobile screen  -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -19,6 +19,21 @@
 		<!--<link rel="stylesheet" href="css/bootstrap.min.css"> -->
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>        
+
+		<script>
+         function addValueToPassword(button)
+         {
+         		var currVal=$("#passcode").val();
+         		if(button=="bksp")
+         		{
+         			$("#passcode").val(currVal.substring(0,currVal.length-1));
+         		}	
+         		else
+         		{
+         			$("#passcode").val(currVal.concat(button));
+         		}
+         }
+		</script>
 	</head>
 	<body>
 
@@ -28,27 +43,49 @@
 				<h1>Thyroid Cancer Aide</h1>
 			</div><!-- /header -->
 			<div data-role="content">
-				<div>
-					<img style="display: block;margin-left: auto;margin-right: auto;" src="images/doctor.gif" alt="Doctor">
-				</div>
+				
+			Password : <input type="password" id="passcode">
+			    
 				<div data-role="controlgroup">
-					<a data-role="button" id="btnEnter" >Enter</a>
+					<a data-role="button" id="btnEnter" type ="submit">Enter</a>
 					<a href="#pagAbout" data-role="button">About</a>
 				</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a data-role="button" onclick="addValueToPassword(7)">7</a>
+				<a data-role="button" onclick="addValueToPassword(8)" >8</a>
+				<a data-role="button" onclick="addValueToPassword(9)" >9</a>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a data-role="button" onclick="addValueToPassword(4)" >4</a>
+				<a data-role="button" onclick="addValueToPassword(5)" >5</a>
+				<a data-role="button" onclick="addValueToPassword(6)" >6</a>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a data-role="button" onclick="addValueToPassword(1)" >1</a>
+				<a data-role="button" onclick="addValueToPassword(2)" >2</a>
+				<a data-role="button" onclick="addValueToPassword(3)" >3</a>
+				</div>
+				<div data-role="controlgroup" data-type="horizontal">
+				<a data-role="button" onclick="addValueToPassword(0)">0</a>
+				<a data-role="button" onclick="addValueToPassword('bksp')" data-icon="delete">del</a>
+				</div>
+			</ul>	
+			
+
 			</div>
 		</div>	
 
-		<!--Dialog Page -->
+		<!--Dialog Page -
 		<div data-role="page" id="pagDialog"  data-close-btn="none" >
 			<div data-role="header" >		
 				<h1>Dialog</h1>
-			</div><!-- /header -->
+			</div><!- /header -
 			<div data-role="content">
 				Do you want to skip the first page next time you visit the page ?
 				<a href="#pagMenu" id="btnDialogYes" data-role="button" data-inline="true">Yes</a>
 				<a href="#pagMenu" id="btnDialogNo" data-role="button" data-inline="true">No</a>
-			</div><!-- /content -->
-		</div><!-- /page --> 
+			</div><!- /content -->
+		<!-- </div>/page --> 
 
 		<!--Disclaimer Page -->
 		<div data-role="page" id="legalNotice"  data-close-btn="none" >
@@ -56,16 +93,16 @@
 				<h1>Disclaimer</h1>
 			</div><!-- /header -->
 			<div data-role="content">
-				Hello
-				<a href="#pagMenu" id="noticeYes" data-role="button" data-inline="true">Yes</a>
+				Hello !<br>
+				<a href="#pagMenu" id="noticeYes" data-role="button" data-inline="true" data-icon ="forward" data-mini ="false">Yes</a>
 			</div><!-- /content -->
 		</div><!-- /page --> 
 		
 		<!--About Page -->
 		<div data-role="page" id="pagAbout"  >
 			<div data-role="header">
-				<a href="#pagHome" id="btnAboutBack" data-role="button" data-icon="home" data-iconpos="left" data-inline="true">Home</a>
-				<a href="#pagMenu" id="btnAboutMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>		
+				<!--<a href="#pagHome" id="btnAboutBack" data-role="button" data-icon="home" data-iconpos="left" data-inline="true">Home</a>-->
+				<a href="#pagHome"="btnAboutMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Home</a>		
 				<h1>Info</h1>
 			</div><!-- /header -->
 			<div data-role="content">
@@ -76,7 +113,7 @@
 		<!-- Menu page -->
 		<div data-role="page" id="pagMenu">
 			<div data-role="header">
-				<a href="#pagHome" id="btnMenuBack" data-role="button" data-icon="home" data-iconpos="left" data-inline="true">Home</a>
+				<!--<a href="#pagMenu" id="btnMenuBack" data-role="button" data-icon="home" data-iconpos="left" data-inline="true">Home</a>-->
 				<a href="#pagAbout" data-role="button" data-icon="info" data-iconpos="left" data-inline="true">Info</a>
 				<h1>Thyroid Cancer Aide</h1>
 			</div><!-- /header -->
@@ -270,7 +307,6 @@
          $(window).resize(function(){
          resizeGraph();
          });
-          
-</script>
+         </script>
 	</body>
 </html>
