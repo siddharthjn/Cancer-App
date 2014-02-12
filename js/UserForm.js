@@ -44,7 +44,7 @@ function saveUserForm() {
 		"FirstName"    			: $("#txtFirstName").val(),
 		"LastName"  			: $("#txtLastName").val(),
 		"HealthCardNumber"  	: $("#txtHealthCardNumber").val(),
-		"NewPassword"        : $("#changePassword").val(),
+		"NewPassword"           : $("#changePassword").val(),
 		"DOB" 					: $("#datBirthdate").val(),
 		"CancerType" 			: $("#slcCancerType option:selected").val(),
 		"CancerStage" 			: $("#slcCancerStage option:selected").val(),
