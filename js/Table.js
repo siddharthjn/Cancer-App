@@ -60,7 +60,7 @@ function loadUserInformation() {
 		else if(user.TSHRange=="StageB") {user.TSHRange="B: 0.1-0.5 mIU/L";}
 		else {user.TSHRange="C: 0.35-2.0 mIU/L";}
 		
-		$("#divUserSection").append("User's Name:"+user.FirstName+" "+user.LastName+"<br>Age: "+age+"<br>Health Card Number: "+user.HealthCardNumber+"<br>Cancer Type: "+user.CancerType+"<br>Cancer Stage: "+user.CancerStage+"<br>TSH Range: "+user.TSHRange);
+		$("#divUserSection").append("User's Name:"+user.FirstName+" "+user.LastName+"<br>Age: "+age+"<br>Health Card Number: "+user.HealthCardNumber+"<br>New Password : "+user.NewPassword+"<br>Cancer Type: "+user.CancerType+"<br>Cancer Stage: "+user.CancerStage+"<br>TSH Range: "+user.TSHRange);
 		$("#divUserSection").append("<br><a href='#pagUserInfo' data-mini='true' data-role='button' data-icon='edit' data-iconpos='left' data-inline='true' >Edit Profile</a>");
 		$('#divUserSection [data-role="button"]').button(); // 'Refresh' the button
 	}

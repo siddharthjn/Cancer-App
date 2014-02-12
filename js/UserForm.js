@@ -44,6 +44,7 @@ function saveUserForm() {
 		"FirstName"    			: $("#txtFirstName").val(),
 		"LastName"  			: $("#txtLastName").val(),
 		"HealthCardNumber"  	: $("#txtHealthCardNumber").val(),
+		"NewPassword"        : $("#changePassword").val(),
 		"DOB" 					: $("#datBirthdate").val(),
 		"CancerType" 			: $("#slcCancerType option:selected").val(),
 		"CancerStage" 			: $("#slcCancerStage option:selected").val(),
@@ -88,6 +89,7 @@ function showUserForm() { //Load the stored values in the form
 		$("#txtFirstName").val(user.FirstName);
 		$("#txtLastName").val(user.LastName);
 		$("#txtHealthCardNumber").val(user.HealthCardNumber);
+		$("#changePassword").val(user.NewPassword);
 		$("#datBirthdate").val(user.DOB);
 		$('#slcCancerType option[value='+user.CancerType+']').attr('selected', 'selected');
 		$("#slcCancerType option:selected").val(user.CancerType);
