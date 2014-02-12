@@ -5,11 +5,25 @@ function legalCounter()
         var counter = JSON.parse(localStorage.getItem("counter"));
         console.log(counter);
     }
-   
 
+ var passwordHome ; 
 
+function checkPassword()
+{
+	if(JSON.parse(localStorage.getItem("user")) != null)
+	{
+		passwordHome  = JSON.parse(localStorage.getItem("user")).NewPassword;
+
+	}
+	else
+	{
+		passwordHome = "2345";
+	}
+}
 $( "#btnEnter" ).click(function() {
-	if(document.getElementById("passcode").value == "2345")
+	checkPassword();
+	console.log(passwordHome);
+	if(document.getElementById("passcode").value == passwordHome)
 	{
 	/* if(JSON.parse(localStorage.getItem("user")) != null){
 		$("#btnEnter").attr('href',"#pagDialog").attr("data-rel","dialog").button();
