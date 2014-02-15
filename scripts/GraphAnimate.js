@@ -1,6 +1,3 @@
-
-//$("#pageGraph").click(drawGraph);
-
 function drawGraph()
 {
 

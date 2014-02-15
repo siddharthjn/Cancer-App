@@ -1,6 +1,4 @@
-$("#Advise").click(advisePage);
-
-function advisePage() {
+function advicePage() {
     if (localStorage.getItem("tbRecords") === null) {
         alert("No records exist.");
         var url = "#pagMenu";

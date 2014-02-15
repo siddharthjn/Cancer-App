@@ -97,8 +97,8 @@
 			<div data-role="controlgroup">
 				<a href="#pageUserInfo" data-role="button">User Info</a>
 				<a href="#pageRecords" data-role="button">Records</a>
-				<a href="#pageGraph" data-role="button" >Graph</a>
-				<a data-role="button" id="pageAdvice">Suggestions</a>
+				<a href="#pageGraph" data-role="button">Graph</a>
+				<a href="#pageAdvice" data-role="button">Suggestions</a>
 			</div>	
 		</div>
 	</div>
@@ -124,7 +124,7 @@
 				<a href="#pagNewRecordForm" id="btnAddRecord" data-role="button" data-icon="plus">Add New Entry</a>
 				<a href="#" data-role="button" id="btnClearHistory" data-icon="delete">Clear History</a>
 			</div>
-		</div><!-- /content -->
+		</div>
 	</div>	
 	
 	<!-- New Record Form page -->
@@ -136,28 +136,28 @@
 		</div><!-- /header -->
 		<div data-role="content">
 			<form id="frmNewRecordForm" action="">
+				<div data-role="fieldcontain">
 					<div data-role="fieldcontain">
-						<div data-role="fieldcontain">
-							<label for="datExamDate">Date: </label>
-							<input type="date" name="datExamDate" data-mini="false" id="datExamDate" value="">	
-						</div>
-						<div data-role="fieldcontain">
-							<label for="txtTSH"><abbr title="Thyroid-stimulating hormone">TSH ( mIU/L ) : </abbr></label>
-							<input type="text" placeholder="0" name="txtTSH" data-mini="false" id="txtTSH" value="">
-						</div>	
-						<div data-role="fieldcontain">
-							<label for="txtThyroglobulin">Thyroglobulin ( µg/L )[Optional] : </label>
-							<input type="text" placeholder="0" name="txtThyroglobulin" data-mini="false" id="txtThyroglobulin" value="">
-						</div>	
-						<div data-role="fieldcontain">
-							<label for="txtSynthroidDose"><abbr title="Synthroid or Eltroxin">Synthroid*(ug) : </abbr></label>
-							<input type="text" placeholder="0" name="txtSynthroidDose" data-mini="false" id="txtSynthroidDose" value="">
-						</div>	
-                      </div>
+						<label for="datExamDate">Date: </label>
+						<input type="date" name="datExamDate" data-mini="false" id="datExamDate" value="">	
+					</div>
+					<div data-role="fieldcontain">
+						<label for="txtTSH"><abbr title="Thyroid-stimulating hormone">TSH (mIU/L): </abbr></label>
+						<input type="text" placeholder="0" name="txtTSH" data-mini="false" id="txtTSH" value="">
+					</div>	
+					<div data-role="fieldcontain">
+						<label for="txtThyroglobulin">Thyroglobulin (µg/L)[Optional]: </label>
+						<input type="text" placeholder="0" name="txtThyroglobulin" data-mini="false" id="txtThyroglobulin" value="">
+					</div>	
+					<div data-role="fieldcontain">
+						<label for="txtSynthroidDose"><abbr title="Synthroid or Eltroxin">Synthroid*(µg): </abbr></label>
+						<input type="text" placeholder="0" name="txtSynthroidDose" data-mini="false" id="txtSynthroidDose" value="">
+					</div>
+				</div>
 				<input type="submit" id="btnSubmitRecord" value="">
 			</form>
-		</div><!-- /content -->
-            <p>&nbsp;&nbsp;100 microgram = .0001 gram</p> 
+		</div>
+    <p>&nbsp;&nbsp;100 microgram = .0001 gram</p> 
 	</div>		
 
 	<!--User Information Page/Form -->
@@ -218,10 +218,9 @@
 						</select>	
 					</div>							
 				<input type="submit" align="center" id="btnUserUpdate" data-icon="check" data-iconpos="left" value="Update" data-inline="true">
-				<!--<input type="reset"  id="btnUserClear" data-icon="delete" data-iconpos="left" value="Clear Data"  data-inline="true">-->
 			</form>
-		</div><!-- /content -->
-	</div><!-- /page --> 
+		</div>
+	</div> 
 	
 	<!--Graph Page -->
 	<div data-role="page" id="pageGraph"  class="test">
@@ -229,36 +228,32 @@
 			<a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>	
 			<a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="left" data-inline="true">Info</a>
 			<h1>Analyze</h1>
-		</div><!-- /header -->
-		<!--<div data-role="content"> -->
-		<!--<div class ="jumbotron">
-		<div class ="container">-->	
-          <div class="panel panel-success">
-          	<div class="panel-heading">
-          <h3 class="panel-title">TSH vs Date</h3>
-              </div>
-          <div class="panel-body">
-          <canvas id="sky1" width="500" height="500"
-		style="border:1px solid #000000;">
+		</div>
+    <div class="panel panel-success">
+    	<div class="panel-heading">
+    <h3 class="panel-title">TSH vs Date</h3>
+        </div>
+    <div class="panel-body">
+    <canvas id="sky1" width="500" height="500"
+			style="border:1px solid #000000;">
 		</canvas>
       </div>
-		</div><!-- /content --> 
-	</div><!-- /page --> 
+		</div> 
+	</div> 
 	
 	<!--Advice Page -->
-	<div data-role="page" id="pagAdvice"  >
+	<div data-role="page" id="pageAdvice">
 		<div data-role="header">
 			<a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>	
 			<a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="left" data-inline="true">Info</a>		
 			<h1>Suggestions</h1>
-		</div><!-- /header -->
+		</div>
 		<div data-role="content">
 			<canvas id="myCanvas2" width="550" height="550"
-		style="border:1px solid #000000;">
-
-					</canvas>
-		</div><!-- /content -->
-	</div><!-- /page --> 
+				style="border:1px solid #000000;">
+			</canvas>
+		</div>
+	</div> 
 	
 	<!--Custom Javascript/Jquery -->
 	<script src="scripts/RGraph.common.core.js"></script>
@@ -273,17 +268,5 @@
 	<script src="scripts/Advice.js"></script>
 	<script src="scripts/GraphAnimate.js"></script>
   <script src="scripts/pageLoader.js"></script>
-  <script> // for resizing graph page
-   var resizeGraph = function() {if($( window ).width() < 700){
-   $("#sky1").css({"width":$(window).width()- 50});
-   $("#myCanvas2").css({"width":$(window).width()- 50});
-   }};
-   $(window).load(function(){
-   resizeGraph();
-   });
-   $(window).resize(function(){
-   resizeGraph();
-   });
-   </script>
 </body>
 </html>

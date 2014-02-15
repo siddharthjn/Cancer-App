@@ -194,6 +194,7 @@ function addRecord()
 			else if(e == QUOTA_EXCEEDED_ERR){
 				alert("Error: Saving to local storage.");
 			}
+			
 			console.log(e);
 		}
 	}
