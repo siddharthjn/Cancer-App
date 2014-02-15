@@ -1,7 +1,7 @@
 
-$("#sidGraph").click(sidGraph);
+//$("#pageGraph").click(drawGraph);
 
-function sidGraph()
+function drawGraph()
 {
 
     if (localStorage.getItem("tbRecords") === null) {

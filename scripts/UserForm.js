@@ -1,4 +1,4 @@
-$( "#pagUserInfo" ).on("pageinit",function() { //Event : Initializating the page
+$( "#pageUserInfo" ).on("pageinit",function() { //Event : Initializating the page
 	showUserForm(); 
 });
 
@@ -54,7 +54,8 @@ function saveUserForm() {
 			localStorage.setItem("user", JSON.stringify(user));
 			loadUserInformation();
 			alert("Saving Information");
-			$.mobile.changePage("#pagMenu");
+			
+			$.mobile.changePage("#pageMenu");
 		}
 		catch (e){
 			if (e == QUOTA_EXCEEDED_ERR) {

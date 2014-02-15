@@ -3,7 +3,7 @@ var operation; //"A"=Adding; "E"=Editing
 var selected_index;//Index of the selected record item
 var tbRecords;//Array of records 
 
-$( "#pagRecords" ).on("pageinit",function() {
+$( "#pageRecords" ).on("pageinit",function() {
 	selected_index = -1;
 	loadUserInformation();
 	listRecords();
@@ -61,7 +61,7 @@ function loadUserInformation() {
 		else {user.TSHRange="C: 0.35-2.0 mIU/L";}
 		
 		$("#divUserSection").append("User's Name:"+user.FirstName+" "+user.LastName+"<br>Age: "+age+"<br>Health Card Number: "+user.HealthCardNumber+"<br>New Password : "+user.NewPassword+"<br>Cancer Type: "+user.CancerType+"<br>Cancer Stage: "+user.CancerStage+"<br>TSH Range: "+user.TSHRange);
-		$("#divUserSection").append("<br><a href='#pagUserInfo' data-mini='true' data-role='button' data-icon='edit' data-iconpos='left' data-inline='true' >Edit Profile</a>");
+		$("#divUserSection").append("<br><a href='#pageUserInfo' data-mini='true' data-role='button' data-icon='edit' data-iconpos='left' data-inline='true' >Edit Profile</a>");
 		$('#divUserSection [data-role="button"]').button(); // 'Refresh' the button
 	}
 	return true;
@@ -120,6 +120,7 @@ function listRecords() {
 	}
 	return true;
 }
+
 function showRecordForm(){
 	var rec = tbRecords[selected_index];
 	$('#datExamDate').val(rec.Date);
@@ -127,6 +128,7 @@ function showRecordForm(){
 	$('#txtThyroglobulin').val(rec.Tg);
 	$('#txtSynthroidDose').val(rec.SynthroidDose);
 }
+
 function checkRecordForm() {
 	//for finding current date 
 	var d = new Date();
@@ -145,28 +147,34 @@ function checkRecordForm() {
 		return false;
 	}	
 }
+
 function callEdit(index) {
 	selected_index = index;
 	operation = "E";
 	$("#btnSubmitRecord").val("Edit Record");
 	return true;
 }
+
 function callDelete(index) {
 	selected_index = index;
 	deleteRecord();
 	listRecords();
 	return true;
 }
-function addRecord() {
-	if (typeof(Storage) == "undefined" ) {
-        alert("Your browser does not support HTML5 localStorage. Try upgrading.");
-    }
-	else if(checkRecordForm()){	
+
+function addRecord() 
+{
+	if (typeof(Storage)===undefined ) 
+	{
+		alert("Your browser does not support HTML5 localStorage. Try upgrading.");
+  }
+	else if(checkRecordForm())
+	{	
 		var record = {
 		"Date"  		  	: $('#datExamDate').val(),
-		"TSH"			  	: $('#txtTSH').val(),
-		"Tg" 				: $('#txtThyroglobulin').val(),
-		"SynthroidDose" 	: $('#txtSynthroidDose').val()
+		"TSH"			  	  : $('#txtTSH').val(),
+		"Tg" 				    : $('#txtThyroglobulin').val(),
+		"SynthroidDose" : $('#txtSynthroidDose').val()
 		};
 		try{
 			tbRecords.push(record);
@@ -176,12 +184,17 @@ function addRecord() {
 			clearRecordForm();
 		}
 		catch (e){
-			if (e == QUOTA_EXCEEDED_ERR) {
-				alert("Error: Local Storage limit exceeds.");
+			if (window.navigator.vendor==="Google Inc.")
+			{
+				if(e == DOMException.QUOTA_EXCEEDED_ERR) 
+				{
+					alert("Error: Local Storage limit exceeds.");
+				}
 			}
-			else {
+			else if(e == QUOTA_EXCEEDED_ERR){
 				alert("Error: Saving to local storage.");
 			}
+			console.log(e);
 		}
 	}
 	else{
