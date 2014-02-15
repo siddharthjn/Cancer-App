@@ -1,3 +1,19 @@
+/* Adds given text value to the password text 
+ * field 
+ */
+function addValueToPassword(button)
+{
+	var currVal=$("#passcode").val();
+	if(button=="bksp")
+	{
+		$("#passcode").val(currVal.substring(0,currVal.length-1));
+	}	
+	else
+	{
+		$("#passcode").val(currVal.concat(button));
+	}
+}
+
 /* 
  * Retrieves password from local storage if it 
  * exists, otherwise returns the default password
