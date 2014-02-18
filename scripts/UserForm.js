@@ -21,7 +21,7 @@ function checkUserForm() { //Check for empty fields in the form
     ((''+month).length<2 ? '0' : '') + month + '/' +
     ((''+day).length<2 ? '0' : '') + day;
 
-	if( ($("#txtFirstName").val() != "") &&
+	if(($("#txtFirstName").val() != "") &&
 		($("#txtLastName").val() != "") &&
 		($("#txtHealthCardNumber").val() != "") &&
 		($("#datBirthdate").val() != "") && ($("#datBirthdate").val() <= currentDate)&&
@@ -36,7 +36,7 @@ function checkUserForm() { //Check for empty fields in the form
 }
 function saveUserForm() {
 
-	if (typeof(Storage) == "undefined" ) {
+	if (typeof(Storage) == "undefined") {
         alert("Your browser does not support HTML5 localStorage. Try upgrading.");
     }
 	else if(checkUserForm()){	
@@ -54,7 +54,7 @@ function saveUserForm() {
 			localStorage.setItem("user", JSON.stringify(user));
 			loadUserInformation();
 			alert("Saving Information");
-			
+
 			$.mobile.changePage("#pageMenu");
 		}
 		catch (e){

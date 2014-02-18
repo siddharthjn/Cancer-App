@@ -8,6 +8,9 @@ Icon
 ._*
 .Spotlight-V100
 
+# Windows
+Thumbs.db
+
 # SublimeText
 /*.sublime-project
 *.sublime-workspace
