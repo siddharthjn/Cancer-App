@@ -5,7 +5,7 @@ function advicePage() {
         $(location).attr('href', url);
     }
     else {
-     var url = "#pagAdvice";
+     var url = "#pageAdvice";
         $(location).attr('href', url);
         var tbRecords = JSON.parse(localStorage.getItem("tbRecords"));
         var user = JSON.parse(localStorage.getItem("user"));
@@ -13,10 +13,10 @@ function advicePage() {
          tbRecords.sort(compareDates);
         var i = tbRecords.length - 1;
         var TSH = tbRecords[i].TSH;
-        var head = document.getElementById('myCanvas2');
+        var head = document.getElementById('AdviceCanvas');
         var heading = head.getContext("2d");
         heading.font = "22px Arial";
-        var c=document.getElementById("myCanvas2");
+        var c=document.getElementById("AdviceCanvas");
         //Background color of canvas
         var ctx=c.getContext("2d");
         ctx.fillStyle="#c0c0c0";
@@ -24,7 +24,7 @@ function advicePage() {
 
         //For writing if meter is in red zone
         function WriteRed() {
-        var r=document.getElementById("myCanvas2");
+        var r=document.getElementById("AdviceCanvas");
         var rtx=r.getContext("2d");
         rtx.font = "22px Arial";
         rtx.fillStyle = "black";
@@ -34,7 +34,7 @@ function advicePage() {
         }
         //For writing if meter is in green zone
         function WriteGreen() {
-        var g=document.getElementById("myCanvas2");
+        var g=document.getElementById("AdviceCanvas");
         var gtx=g.getContext("2d");
         gtx.font = "22px Arial";
          gtx.fillStyle="black";
@@ -44,7 +44,7 @@ function advicePage() {
         }
         //For writing if meter is in yellow zone
         function WriteYellow() {
-            var y=document.getElementById("myCanvas2");
+            var y=document.getElementById("AdviceCanvas");
             var ytx=y.getContext("2d");
             ytx.font = "22px Arial";
             ytx.fillStyle = "black";
@@ -115,39 +115,39 @@ function advicePage() {
      }
          function StageAMeter()
          {
-         var cg = new RGraph.CornerGauge('myCanvas2', 0,3,TSH)
+         var cg = new RGraph.CornerGauge('AdviceCanvas', 0,3,TSH)
             .Set('chart.colors.ranges', [[.5,3, 'red'], [.1,.5,'yellow'], [.01,.1, '#0f0']]);
         DrawMeter(cg);
             //If TSH value is huge
             if (TSH > 3)
             {
-            var cg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
+            var cg = new RGraph.CornerGauge('AdviceCanvas', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[.5,3, 'red'], [.1,.5,'yellow'], [.01,.1, '#0f0'], [3.01, TSH, 'red']]);
            DrawMeter(cg);
             }
          }
          
          function StageBMeter() {
-         var bcg = new RGraph.CornerGauge('myCanvas2', 0,3,TSH)
+         var bcg = new RGraph.CornerGauge('AdviceCanvas', 0,3,TSH)
             .Set('chart.colors.ranges', [[2.01,3, 'red'], [.51,2,'yellow'], [.1,.5, '#0f0'], [.01,.1,'yellow']]);
         DrawMeter(bcg);
 
             if (TSH > 3)
             {
-            var bcg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
+            var bcg = new RGraph.CornerGauge('AdviceCanvas', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[2.01,3, 'red'], [.51,2,'yellow'], [.1,.5, '#0f0'], [.01,.1, 'yellow'],[3,TSH,'red']]);
            DrawMeter(bcg);
             }
          }
          
          function StageCMeter() {
-         var ccg = new RGraph.CornerGauge('myCanvas2', 0,15,TSH)
+         var ccg = new RGraph.CornerGauge('AdviceCanvas', 0,15,TSH)
             .Set('chart.colors.ranges', [[10.01,15, 'red'], [2.01,10,'yellow'], [.35,2, '#0f0'], [.1,.34,'yellow']]);
         DrawMeter(ccg);
 
             if (TSH > 15)
             {
-            var ccg = new RGraph.CornerGauge('myCanvas2', 0,TSH,TSH)
+            var ccg = new RGraph.CornerGauge('AdviceCanvas', 0,TSH,TSH)
             .Set('chart.colors.ranges', [[10.01,15, 'red'], [2.01,10,'yellow'], [.35,2, '#0f0'], [.1,.34, 'yellow'],[15.01,TSH,'red']]);
            DrawMeter(ccg);
             }

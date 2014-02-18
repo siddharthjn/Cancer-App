@@ -31,7 +31,7 @@ $( "#frmNewRecordForm" ).submit(function() {
 		return false;
 	}
 });
-$( "#pagNewRecordForm" ).on("pageshow",function() {
+$( "#pageNewRecordForm" ).on("pageshow",function() {
 	//We need to know if we are editing or adding a record everytime we show this page
 	//If we are adding a record we show the form with blank inputs
 	if(operation=="A"){
@@ -108,7 +108,7 @@ function listRecords() {
 										 "  <td>"+rec.TSH+"</td>" +
 										 "  <td>"+rec.Tg+"</td>" +
 										 "  <td>"+rec.SynthroidDose+"</td>" +
-										 "	<td><a data-inline='true'  data-mini='true' data-role='button' href='#pagNewRecordForm' onclick='callEdit("+i+")' data-icon='edit' data-iconpos='notext'></a>"+
+										 "	<td><a data-inline='true'  data-mini='true' data-role='button' href='#pageNewRecordForm' onclick='callEdit("+i+")' data-icon='edit' data-iconpos='notext'></a>"+
 										 "	<a data-inline='true'  data-mini='true' data-role='button' href='#' onclick='callDelete("+i+")' data-icon='delete' data-iconpos='notext'></a></td>"+
 										 "</tr>");
 		}
@@ -194,7 +194,7 @@ function addRecord()
 			else if(e == QUOTA_EXCEEDED_ERR){
 				alert("Error: Saving to local storage.");
 			}
-			
+
 			console.log(e);
 		}
 	}

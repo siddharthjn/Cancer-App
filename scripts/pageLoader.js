@@ -2,8 +2,8 @@ function resizeGraph()
 {
 	if($(window).width() < 700)
 	{
-		$("#sky1").css({"width":$(window).width()- 50});
-		$("#myCanvas2").css({"width":$(window).width()- 50});
+		$("#GraphCanvas").css({"width":$(window).width()- 50});
+		$("#AdviceCanvas").css({"width":$(window).width()- 50});
 	}
 }
 
@@ -12,7 +12,9 @@ $(window).resize(function(){
 	resizeGraph();
 });
 
-//Runs the function to display the graph or suggestions, every time their div is shown
+/*Runs the function to display the graph or 
+ * suggestions, every time their div is shown
+ */
 $(document).on("pageshow", function(){
 	if($('.ui-page-active').attr('id')=="pageAdvice")
 	{
