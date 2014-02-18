@@ -1,25 +1,21 @@
-$( "#pageUserInfo" ).on("pageinit",function() { //Event : Initializating the page
-	showUserForm(); 
-});
-
-$( "#btnUserClear" ).click(function() {
+$( "#btnUserClear" ).click(function(){
 	clearUserForm();  
-	return false;
 });
 
-$( "#frmUserForm" ).submit(function() { //Event : submiting the form
+$( "#frmUserForm" ).submit(function(){ //Event : submiting the form
 	saveUserForm(); 
 	return false;
 });
 
-function checkUserForm() { //Check for empty fields in the form
+function checkUserForm()
+{ //Check for empty fields in the form
 	//for finding current date 
 	var d = new Date();
 	var month = d.getMonth()+1;
-    var day = d.getDate();
-    var currentDate = d.getFullYear() + '/' +
-    ((''+month).length<2 ? '0' : '') + month + '/' +
-    ((''+day).length<2 ? '0' : '') + day;
+  var day = d.getDate();
+  var currentDate = d.getFullYear() + '/' +
+  ((''+month).length<2 ? '0' : '') + month + '/' +
+  ((''+day).length<2 ? '0' : '') + day;
 
 	if(($("#txtFirstName").val() != "") &&
 		($("#txtLastName").val() != "") &&
@@ -27,19 +23,23 @@ function checkUserForm() { //Check for empty fields in the form
 		($("#datBirthdate").val() != "") && ($("#datBirthdate").val() <= currentDate)&&
 		($("#slcCancerType option:selected").val()  != "Select Cancer Type") &&
 		($("#slcCancerStage option:selected").val() != "Select Cancer Stage") &&
-		($("#slcTSHRange option:selected").val() != "Select TSH Range") ) {
+		($("#slcTSHRange option:selected").val() != "Select TSH Range") ) 
+	{
 		return true;
 	}
-	else{
+	else
+	{
 		return false;
 	}	
 }
-function saveUserForm() {
-
-	if (typeof(Storage) == "undefined") {
-        alert("Your browser does not support HTML5 localStorage. Try upgrading.");
-    }
-	else if(checkUserForm()){	
+function saveUserForm()
+{
+	if (typeof(Storage) == "undefined")
+	{
+    alert("Your browser does not support HTML5 localStorage. Try upgrading.");
+  }
+	else if(checkUserForm())
+	{	
 		var user = {
 		"FirstName"    			: $("#txtFirstName").val(),
 		"LastName"  			: $("#txtLastName").val(),
@@ -50,29 +50,43 @@ function saveUserForm() {
 		"CancerStage" 			: $("#slcCancerStage option:selected").val(),
 		"TSHRange" 				: $("#slcTSHRange option:selected").val()
 		};
-		try{
+
+		try
+		{
 			localStorage.setItem("user", JSON.stringify(user));
 			loadUserInformation();
 			alert("Saving Information");
 
 			$.mobile.changePage("#pageMenu");
 		}
-		catch (e){
-			if (e == QUOTA_EXCEEDED_ERR) {
-				alert("Error: Local Storage limit exceeds.");
+		catch(e)
+		{
+			/* Google browsers use different error 
+			 * constant
+			 */
+			if (window.navigator.vendor==="Google Inc.")
+			{
+				if(e == DOMException.QUOTA_EXCEEDED_ERR) 
+				{
+					alert("Error: Local Storage limit exceeds.");
+				}
 			}
-			else {
+			else if(e == QUOTA_EXCEEDED_ERR){
 				alert("Error: Saving to local storage.");
 			}
+
+			console.log(e);
 		}
 	}
-	else{
+	else
+	{
 		alert("Please complete the form properly.");		
 	}
 
 }
 
-function clearUserForm() {
+function clearUserForm()
+{
 	localStorage.removeItem("user");
 	alert("The stored data have been removed");
 	$("#slcCancerStage").val("Select Cancer Stage");
@@ -81,12 +95,35 @@ function clearUserForm() {
 	$('#slcCancerType').selectmenu('refresh',true);
 	$("#slcTSHRange").val("Select TSH Range");
 	$('#slcTSHRange').selectmenu('refresh',true);
-	return true;
 }
 
-function showUserForm() { //Load the stored values in the form
-	var user = JSON.parse(localStorage.getItem("user"));
-	if(user != null){
+function showUserForm()
+{ //Load the stored values in the form
+	try
+	{
+		var user=JSON.parse(localStorage.getItem("user"));
+	}
+	catch(e)
+	{
+		/* Google browsers use different error 
+		 * constant
+		 */
+		if (window.navigator.vendor==="Google Inc.")
+		{
+			if(e == DOMException.QUOTA_EXCEEDED_ERR) 
+			{
+				alert("Error: Local Storage limit exceeds.");
+			}
+		}
+		else if(e == QUOTA_EXCEEDED_ERR){
+			alert("Error: Saving to local storage.");
+		}
+
+		console.log(e);
+	}
+
+	if(user != null)
+	{
 		$("#txtFirstName").val(user.FirstName);
 		$("#txtLastName").val(user.LastName);
 		$("#txtHealthCardNumber").val(user.HealthCardNumber);
@@ -102,5 +139,4 @@ function showUserForm() { //Load the stored values in the form
 		$("#slcTSHRange option:selected").val(user.TSHRange);
 		$('#slcTSHRange').selectmenu('refresh', true);
 	}
-	return true;
 }

@@ -26,4 +26,8 @@ $(document).on("pageshow", function(){
 		drawGraph();
 		resizeGraph();
 	}
+	else if($('.ui-page-active').attr('id')=="pageUserInfo")
+	{
+		showUserForm(); 
+	}
 });    
