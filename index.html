@@ -21,10 +21,12 @@
       <h1>Thyroid Cancer Aide</h1>
     </div>
     <div data-role="content">
+      Email: <input type="email" id="email"></input>
       Password : <input type="password" id="passcode"></input>
           
       <div data-role="controlgroup" id="numKeyPad">
-        <a data-role="button" id="btnEnter" type ="submit">Enter</a>
+        <a data-role="button" id="btnEnter" type ="submit">Log In</a>
+        <a href="#pageUserInfo" data-role="button" id="btnCreateUser">Create New User</a>
         <a href="#pageAbout" data-role="button">About</a>
       </div>
       <div data-role="controlgroup" data-type="horizontal">
@@ -57,7 +59,7 @@
     <div data-role="content">
       [Insert Disclaimer Text Here]
       <br>
-      <a href="#pageUserInfo" id="noticeYes" data-role="button" data-icon ="forward" data-mini ="false">Yes</a>
+      <a href="javascript:void(0)" id="noticeYes" data-role="button" data-icon ="forward" data-mini ="false">Yes</a>
     </div>
   </div> 
   
@@ -81,6 +83,10 @@
     </div><!-- /header -->
     <div data-role="content">
       <form id="frmUserForm" action="">
+          <div data-role="fieldcontain">
+            <label for="txtEmail">Email: </label>
+            <input type="email" placeholder="name@example.com" name="txtEmail" data-mini="false" id="txtEmail" value="" required>
+          </div>
           <div data-role="fieldcontain">
             <label for="txtFirstName">First Name: </label>
             <input type="text" placeholder="First Name" name="txtFirstName" data-mini="false" id="txtFirstName" value="" required>
@@ -130,7 +136,7 @@
               <option value="StageC">C: 0.35-2.0 mIU/L</option>
             </select>  
           </div>              
-        <input type="submit" id="btnUserUpdate" data-icon="check" data-iconpos="left" value="Update" data-inline="true">
+        <input type="button" id="btnUserUpdate" data-icon="check" data-iconpos="left" value="Update" data-inline="true">
       </form>
     </div>
   </div>
@@ -148,6 +154,7 @@
         <a href="#pageRecords" data-role="button">Records</a>
         <a href="#pageGraph" data-role="button">Graph</a>
         <a href="#pageAdvice" data-role="button">Suggestions</a>
+        <a href="#pageSync" data-role="button">Sync</a>
       </div>  
     </div>
   </div>
@@ -203,13 +210,11 @@
             <input type="number" step="0.01" placeholder="0" name="txtSynthroidDose" data-mini="false" id="txtSynthroidDose" value="">
           </div>
         </div>
-        <input type="submit" id="btnSubmitRecord" value="">
+        <input type="button" id="btnSubmitRecord" value="">
       </form>
     </div>
     <p>&nbsp;&nbsp;100 microgram = .0001 gram</p> 
   </div>    
-
- 
   
   <!--Graph Page -->
   <div data-role="page" id="pageGraph"  class="test">
@@ -243,6 +248,22 @@
       </canvas>
     </div>
   </div> 
+
+  <!--Advice Page -->
+  <div data-role="page" id="pageSync">
+    <div data-role="header">
+      <a href="#pageMenu" data-role="button" data-icon="bars" data-iconpos="left" data-inline="true">Menu</a>  
+      <a href="#pageAbout" data-role="button" data-icon="info" data-iconpos="right" data-inline="true">Info</a>    
+      <h1>Sync Account Information</h1>
+    </div>
+    <div data-role="content">
+      <div data-role="controlgroup">
+        <a id="btnUpload" data-role="button">Upload Records</a>
+        <a id="btnDownload" data-role="button">Download Records (Do Not Overwrite Local Data)</a>
+        <a id="btnDownloadOverwrite" data-role="button">Download Records (Overwrite Local Data)</a>
+      </div>  
+    </div>
+  </div> 
   
   <!--Custom Javascript/Jquery -->
   <script src="scripts/RGraph.common.core.js"></script>
@@ -255,6 +276,7 @@
   <script src="scripts/Table.js"></script>
   <script src="scripts/Navigation.js"></script>
   <script src="scripts/Advice.js"></script>
+  <script src="scripts/Sync.js"></script>
   <script src="scripts/GraphAnimate.js"></script>
   <script src="scripts/pageLoader.js"></script>
 </body>

@@ -1,6 +1,6 @@
 function drawGraph()
 {
-  if(localStorage.getItem("tbRecords") === null)
+  if(sessionStorage.tbRecords === null)
   {
     alert("No records exist.");
 
@@ -25,18 +25,16 @@ function drawGraph()
 
 function setupCanvas()
 {
-
     var c=document.getElementById("GraphCanvas");
     var ctx=c.getContext("2d");
 
     ctx.fillStyle="#FFFFFF";
     ctx.fillRect(0, 0, 500, 500);
-
 }
 
 function getTSHhistory(TSHarr, Datearr)
 {
-    var tbRecords=JSON.parse(localStorage.getItem("tbRecords"));
+    var tbRecords=JSON.parse(sessionStorage.tbRecords);
     
     tbRecords.sort(compareDates);
     
@@ -61,8 +59,8 @@ function getTSHhistory(TSHarr, Datearr)
 function getTSHbounds(tshLower, tshUpper)
 {
     //Get users cancer stage
-    var user=JSON.parse(localStorage.getItem("user"));
-    var TSHLevel=user.TSHRange;
+    var user=JSON.parse(sessionStorage.user);
+    var TSHLevel=user.tshRange;
 
    /*These lines show upper and lower bounds
     * of acceptable TSH levels (for each 

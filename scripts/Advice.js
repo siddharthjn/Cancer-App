@@ -1,6 +1,6 @@
 function advicePage()
 {
-  if (localStorage.getItem("tbRecords") === null)
+  if (sessionStorage.tbRecords === null)
   {
     alert("No records exist.");
 
@@ -8,14 +8,13 @@ function advicePage()
   }
   else 
   {
+    var user=JSON.parse(sessionStorage.user);
+    var TSHLevel=user.tshRange;
     
-    var user=JSON.parse(localStorage.getItem("user"));
-    var TSHLevel=user.TSHRange;
-    
-    var tbRecords=JSON.parse(localStorage.getItem("tbRecords"));
+    var tbRecords=JSON.parse(sessionStorage.tbRecords);
     tbRecords.sort(compareDates);
     var i=tbRecords.length-1;
-    var TSH=tbRecords[i].TSH;
+    var TSH=tbRecords[i].tsh;
     
     var c=document.getElementById("AdviceCanvas");
     var ctx=c.getContext("2d");
@@ -23,7 +22,6 @@ function advicePage()
     ctx.fillRect(0,0,550,550);
     ctx.font="22px Arial";
     drawAdviceCanvas(ctx,TSHLevel,TSH);
-    
   }
 }
 
