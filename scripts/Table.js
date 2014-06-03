@@ -1,6 +1,6 @@
-// Removes all record data from localStorage 
+// Removes all record data from sessionStorage 
 $("#btnClearHistory").click(function(){
-  localStorage.removeItem("tbRecords");
+  sessionStorage.removeItem("tbRecords");
   listRecords();
   alert("All records have been deleted.");
 });
@@ -13,7 +13,7 @@ $("#btnAddRecord").click(function(){
   /*.button("refresh") function forces jQuery
    * Mobile to refresh the text on the button
    */
-  $("#btnSubmitRecord").val("Add").button("refresh");
+  $("#btnSubmitRecord").val("Add");
 });
 
 $("#btnSubmitRecord").click(function(){
@@ -217,10 +217,7 @@ function checkRecordForm()
 function callEdit(index)
 {
   $("#btnSubmitRecord").attr("indexToEdit", index);
-  /*.button("refresh") function forces jQuery
-   * Mobile to refresh the text on the button
-   */
-  $("#btnSubmitRecord").val("Edit").button("refresh");
+  $("#btnSubmitRecord").val("Edit");
 }
 
 // Delete the given index and re-display the table
@@ -265,41 +262,20 @@ function addRecord()
 
 function deleteRecord(index)
 {
-  try
-  {
-    var tbRecords=JSON.parse(sessionStorage.getItem("tbRecords"));
+  var tbRecords=JSON.parse(sessionStorage.tbRecords);
 
-    tbRecords.splice(index, 1);
-    
-    if(tbRecords.length==0)
-    {
-      /* No items left in records, remove entire 
-       * array from sessionStorage
-       */
-      sessionStorage.removeItem("tbRecords");
-    }
-    else
-    {
-      sessionStorage.setItem("tbRecords", JSON.stringify(tbRecords));
-    }
-  }
-  catch(e)
+  tbRecords.splice(index, 1);
+  
+  if(tbRecords.length==0)
   {
-    /* Google browsers use different error 
-     * constant
+    /* No items left in records, remove entire 
+     * array from sessionStorage
      */
-    if (window.navigator.vendor==="Google Inc.")
-    {
-      if(e == DOMException.QUOTA_EXCEEDED_ERR) 
-      {
-        alert("Error: Local Storage limit exceeds.");
-      }
-    }
-    else if(e == QUOTA_EXCEEDED_ERR){
-      alert("Error: Saving to local storage.");
-    }
-
-    console.log(e);
+    sessionStorage.removeItem("tbRecords");
+  }
+  else
+  {
+    sessionStorage.tbRecords=JSON.stringify(tbRecords);
   }
 }
 
@@ -307,38 +283,17 @@ function editRecord(index)
 {
   if(checkRecordForm())
   {
-    try
-    {
-      var tbRecords=JSON.parse(sessionStorage.getItem("tbRecords"));
-      tbRecords[index] ={
-        "date"          : $('#datExamDate').val(),
-        "tsh"            : $('#txtTSH').val(),
-        "tg"            : $('#txtThyroglobulin').val(),
-        "synthroidDose" : $('#txtSynthroidDose').val()
-      };//Alter the selected item in the array
-      sessionStorage.setItem("tbRecords", JSON.stringify(tbRecords)); //Saving array to local storage
-      alert("Saving Information");
-      clearRecordForm();
-      listRecords();
-    }
-    catch(e)
-    {
-      /* Google browsers use different error 
-       * constant
-       */
-      if (window.navigator.vendor==="Google Inc.")
-      {
-        if(e == DOMException.QUOTA_EXCEEDED_ERR) 
-        {
-          alert("Error: Local Storage limit exceeds.");
-        }
-      }
-      else if(e == QUOTA_EXCEEDED_ERR){
-        alert("Error: Saving to local storage.");
-      }
-
-      console.log(e);
-    }
+    var tbRecords=JSON.parse(sessionStorage.tbRecords);
+    tbRecords[index] ={
+      "date"          : $('#datExamDate').val(),
+      "tsh"            : $('#txtTSH').val(),
+      "tg"            : $('#txtThyroglobulin').val(),
+      "synthroidDose" : $('#txtSynthroidDose').val()
+    };//Alter the selected item in the array
+    sessionStorage.tbRecords = JSON.stringify(tbRecords); //Saving array to local storage
+    alert("Saving Information");
+    clearRecordForm();
+    listRecords();
   }
   else
   {

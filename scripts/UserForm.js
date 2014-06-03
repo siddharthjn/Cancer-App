@@ -41,15 +41,15 @@ function saveUserForm()
   if(checkUserForm())
   {  
     var user = {
-      "Email": $("#txtEmail").val(),
-      "FirstName": $("#txtFirstName").val(),
-      "LastName": $("#txtLastName").val(),
-      "HealthCardNumber": $("#txtHealthCardNumber").val(),
-      "NewPassword": $("#changePassword").val(),
-      "DOB": $("#datBirthdate").val(),
-      "CancerType": $("#slcCancerType option:selected").val(),
-      "CancerStage": $("#slcCancerStage option:selected").val(),
-      "TSHRange": $("#slcTSHRange option:selected").val()
+      "email": $("#txtEmail").val(),
+      "firstName": $("#txtFirstName").val(),
+      "lastName": $("#txtLastName").val(),
+      "healthCardNumber": $("#txtHealthCardNumber").val(),
+      "newPassword": $("#changePassword").val(),
+      "dateOfBirth": $("#datBirthdate").val(),
+      "cancerType": $("#slcCancerType option:selected").val(),
+      "cancerStage": $("#slcCancerStage option:selected").val(),
+      "tshRange": $("#slcTSHRange option:selected").val()
     };
     if($("#btnUserUpdate").val() == "Create") {
       var userData = {
@@ -57,7 +57,7 @@ function saveUserForm()
       }
       $.post(SERVER_URL + '/saveNewUser', userData, function(data) {
         alert("New User Created Successfully!");
-        sessionStorage.user = JSON.stringify(data);
+        sessionStorage.user = JSON.stringify(user);
         $("#btnUserUpdate").val("Update");
         $.mobile.changePage("#pageMenu");
       }).fail(function(error) {
@@ -107,7 +107,9 @@ function showUserForm()
     $('#slcTSHRange option[value='+user.tshRange+']').attr('selected', 'selected');
     $("#slcTSHRange option:selected").val(user.tshRange);
     $('#slcTSHRange').selectmenu('refresh', true);
-  } else {
+  }
+  else
+  {
     $("#btnUserUpdate").val("Create").button("refresh");
   }
 }

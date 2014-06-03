@@ -1,5 +1,6 @@
 var SERVER_URL = "http://localhost:3000";
 
+// Updates records on the server to match the records on the device
 $("#btnUpload").click(function() {
   if(sessionStorage.tbRecords) {
     var requestBody = {
@@ -17,6 +18,8 @@ $("#btnUpload").click(function() {
   }
 });
 
+// Downloads records from the server, only updating records that are
+// not already on the device (determined by the date of the record)
 $("#btnDownload").click(function() {
   var credentials = {
     email: JSON.parse(sessionStorage.user).email,
@@ -42,6 +45,8 @@ $("#btnDownload").click(function() {
   })
 });
 
+// Downloads records from the server and overwrites all records
+// currently on the device
 $("#btnDownloadOverwrite").click(function() {
   var credentials = {
     email: JSON.parse(sessionStorage.user).email,

@@ -1,5 +1,9 @@
 var SERVER_URL = 'http://localhost:3000';
 
+if(!sessionStorage) {
+  alert('Warning: Your browser does not support features required for this application, please consider upgrading.');
+}
+
 /* Adds given text value to the password text 
  * field 
  */
@@ -18,8 +22,7 @@ function addValueToPassword(button)
 
 /* On the main page, after password entry, directs
  * user to main page, legal disclaimer if they 
- * have not yet agreed to it, or user entry page
- * if they have not yet completed their user info.
+ * have not yet agreed to it
  */
 $( "#btnEnter" ).click(function()
 {
@@ -35,7 +38,6 @@ $( "#btnEnter" ).click(function()
         return $.mobile.changePage("#legalNotice");
       }
       $.post(SERVER_URL + '/getRecords', loginCredentials, function(data) {
-        console.log(data);
         sessionStorage.tbRecords = JSON.stringify(data);
         $.mobile.changePage("#pageMenu");
       }).fail(function(error) {

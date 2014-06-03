@@ -15,7 +15,7 @@ function advicePage()
     tbRecords.sort(compareDates);
     var i=tbRecords.length-1;
     var TSH=tbRecords[i].tsh;
-    
+    console.log(TSHLevel);
     var c=document.getElementById("AdviceCanvas");
     var ctx=c.getContext("2d");
     ctx.fillStyle="#c0c0c0";
@@ -134,6 +134,7 @@ function writeAdvice(ctx,level)
   
 function levelAMeter(ctx,TSH)
 {
+  console.log('levela');
   if (TSH <= 3)
   {	  
     var cg=new RGraph.CornerGauge("AdviceCanvas", 0, 3, TSH)
